@@ -1,0 +1,213 @@
+### Overhead Line Conductors ###
+[conductors.acsr336_4]
+name = '336,400 26/7 ACSR'
+D = 0.3648 # in
+GMR = 0.0244 # ft
+r = 0.306
+
+[conductors.acsr4_0]
+name = '4/0 6/1 ACSR'
+D = 0.268152 # in
+GMR = 0.00814 # ft
+r = 0.5920
+
+[conductors.cu14]
+name = '#14 Cu'
+D = 0.0641 # in
+GMR = 0.00208 # ft
+r = 14.8722 # Ohms/mi
+ampacity = 20 
+
+[conductors.acsr_10]
+name = '1/0 ACSR'
+size = '1/0'
+stranding = ''
+material = 'ACSR'
+D = 0.398 # inches
+GMR = 0.00446 # ft
+r = 1.12 # Ohms/mi
+ampacity = 230 # A
+
+[conductors.acsr_20]
+name = '2/0 ACSR'
+size = '2/0'
+stranding = ''
+material = 'ACSR'
+D = 0.447 # inches
+GMR = 0.0051 # ft
+r = 0.895 # Ohms/mi
+ampacity = 270 # A
+
+[conductors.acsr_30]
+name = '3/0 ACSR'
+size = '3/0'
+stranding = '6/1'
+material = 'ACSR'
+D = 0.563 # inches
+GMR = 0.00814 # ft
+r = 0.592 # Ohms/mi
+ampacity = 340 # A
+
+### Underground Cable Internal Conductors ###
+[conductors.core_10aa_ts]
+name = '1/0 AA'
+D = 0.368
+GMR = 0.0111
+r = 0.97
+ampacity = 310 
+
+[conductors.core_250aa_cn]
+name = '250,000 AA'
+D = 0.567 # in
+GMR = 0.0171
+r = 0.41
+ampacity = 299 
+
+[conductors.core_500aa_cn]
+name = '500,000 AA'
+D = 0.813 # in
+GMR = 0.026
+r = 0.206
+ampacity = 483
+
+[conductors.core_1000aa_cn]
+name = '1,000,000 AA'
+D = 1 # in
+GMR = 0.032
+r = 0.137
+ampacity = 730
+
+### Underground Cable Configurations ###
+[cables.cab_250aa_cn]
+name = '250,000 AA, CN'
+D_outer = 1.29 # outer diameter in inches
+core = '250,000 AA'
+neutral_type = 'concentric'
+strand = '#14 Cu'
+n_strands = 13
+eps_r = 2.3
+ampacity = 255 
+
+[cables.cab_10aa_ts]
+name = '1/0 AA, TS'
+D_outer = 0.88 # outer diameter in inches
+core = '1/0 AA'
+neutral_type = 'tape'
+tape_thickness = 5
+rho_m = 1.77721e-8
+ampacity = 165 
+
+[cables.cab_250core_6x14cn]
+name = '250 kcmil (37x), 1/3 CN, 15kV'
+D_outer = 1.16 # inches
+core = '250,000 AA'
+neutral_type = 'concentric'
+strand = '#14 Cu'
+n_strands = 13
+ampacity = 260
+
+[cables.cab_250core_ts]
+name = '250 kcmil, TS, 15kV'
+D_outer = 1.08
+core = '250,000 AA'
+neutral_type = 'tape'
+tape_thickness = 5 # mil
+rho_m = 1.77721e-8
+ampacity = 270
+
+[cables.cab_500core_ts]
+name = '500 kcmil, TS, 15kV'
+D_outer = 1.3
+core = '500,000 AA'
+neutral_type = 'tape'
+tape_thickness = 5 # mil
+rho_m = 1.77721e-8
+ampacity = 400
+
+[cables.cab_1000core_ts]
+name = '1000 kcmil, TS, 15kV'
+D_outer = 1.66
+core = '1,000,000 AA'
+neutral_type = 'tape'
+tape_thickness = 5 # mil
+rho_m = 1.77721e-8
+ampacity = 565
+
+
+### Overhead & Underground Line Spacings ###
+[spacings.oh_horiz_3ph_underbuilt_neu]
+ab = 2.5
+bc = 4.5
+ca = 7 
+an = 5.6569
+bn = 4.272
+cn =  5 
+
+a = [-4.0, 29.0]
+b = [-1.5, 29.0]
+c = [3.0, 29.0]
+n = [0.0, 25.0]
+
+[spacings.oh_horiz_ab]
+ab = 7 
+
+[spacings.oh_horiz_an]
+an = 4 
+
+[spacings.ug515]
+ab = 0.5
+bc = 0.5
+ca = 1 
+
+[spacings.kersting_ex4_4]
+an = 0.25
+
+### Overhead Line Configurations ###
+[lines.ex_overhead_3ph]
+name = 'Example overhead 3-phase line'
+phasing = 'ABCN'
+phase = '2/0 ACSR'
+neutral = '1/0 ACSR'
+spacings = 'oh_horiz_3ph_underbuilt_neu'
+
+[lines.horiz_3ph_20ph_10neu]
+phasing = 'ABCN'
+phase = '2/0 ACSR'
+neutral = '1/0 ACSR'
+spacings = 'oh_horiz_3ph_underbuilt_neu'
+
+[lines.horiz_ab_20ph]
+phasing = 'AB'
+phase = '2/0 ACSR'
+spacings = 'oh_horiz_ab'
+
+[lines.vert_an_20ph_10neu]
+phasing = 'AN'
+phase = '2/0 ACSR'
+neutral = '1/0 ACSR'
+spacings = 'oh_horiz_an'
+
+[lines.kersting_ex4_1]
+phasing = 'ABCN'
+phase = 'acsr336_4'
+neutral = 'acsr4_0'
+spacings = 'oh_horiz_3ph_underbuilt_neu'
+
+### Underground Line Configurations ###
+[lines.kersting_ex4_3]
+phasing = 'ABCN'
+cable = '250,000 AA, CN'
+spacings = 'ug515'
+
+[lines.kersting_ex4_4]
+phasing = 'AN'
+cable = '1/0 AA, TS'
+# neutral = '1/0 7 Strd Cu' # this is for an external neutral, which is not currently supported
+spacings = 'kersting_ex4_4'
+
+# LANL configurations
+# Use Kersting Appendix B p. 431-432
+# Assume 1/3 neutral for concentric
+# LANL standard configuration has 4/0 Cu ground wire I'm not modeling
+# It appears to be pretty close to the shield so maybe I can neglect it
+

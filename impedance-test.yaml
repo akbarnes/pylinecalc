@@ -1,0 +1,102 @@
+# Conductors
+'336,400 26/7 ACSR': {type: cond_cfg, GMR: 0.0244, r: 0.306}
+4/0 6/1 ACSR: {type: cond_cfg, GMR: 0.00814, r: 0.5920}
+14 Cu: {type: cond_cfg, D: 0.0641, GMR: 0.00208, r: 14.8722, Imax: 20.0}
+'250,000 AA': {type: cond_cfg, GMR: 0.0171, r: 0.41, Imax: 299.0}
+1/0 AA: {type: cond_cfg, GMR: 0.0111, r: 0.97}
+1/0 7 Strd Cu: {type: cond_cfg, GMR: 0.01113, r: 0.607, Imax: 310.0}
+
+# Underground Cables
+'250,000 AA, CN': {type: cable_cfg, D_outer: 1.29, ph_cond: '250,000 AA', 
+  neu_type: Concentric, strand_cond: 14 Cu, n_strands: 13, eps_r: 2.3, Imax: 255.0}
+# neutral thickness is specified in mils
+# resistivity is specified in Ohm-m
+'1/0 AA, TS': {type: cable_cfg, D_outer: 0.88, ph_cond: 1/0 AA,
+  neu_type: Tape, tape_thick: 5, rho_m: 1.77721e-8, eps_r: 2.3, Imax: 255.0}
+
+# Conductor Spacings
+# check type with 'spacing_cfg.values()[0] is list' or 'spacing_cfg.values()[0] is dict'
+# spacings are given in ft
+OH Horiz 3ph Underbuilt Neu Coords:
+  type: line_geom_cfg        
+  A: [-2.5,29.0]
+  B: [0.0,29.0]
+  C: [4.5,29.0]
+  N: [1.5,25.0]
+OH Horiz 3ph Underbuilt Neu:
+  type: spacing_cfg        
+  A: {B: 2.5, C: 7, N: 5.6569}
+  B: {C: 4.5, N: 4.272}
+  C: {N: 5.0}  
+OH Horiz 3ph Underbuilt Neu2: {AB: 2.5, AC: 7.0, AN: 5.6569, BC: 4.5, BN: 4.272, CN: 5.0, type: spacing_cfg}
+'515':
+  type: spacing_cfg    
+  A: {B: 0.5, C: 1.0}
+  B: {C: 0.5}
+'spacing4.4':
+  type: spacing_cfg    
+  A: {N: 0.25}   
+
+# Line configs
+'Kersting ex4.1': 
+  type: oh_line_cfg
+  ph_cond: 336,400 26/7 ACSR
+  neu_cond: 4/0 6/1 ACSR
+  phasing: ABCN
+  spacing: OH Horiz 3ph Underbuilt Neu
+  Ractual: 
+    - [0.4576, 0.1560, 0.1535]
+    - [0.1560, 0.4666, 0.1580]  
+    - [0.1535, 0.1580, 0.4615]    
+  Xactual: 
+    - [1.0780, 0.5017, 0.3849]
+    - [0.5017, 1.0482, 0.4236]  
+    - [0.3849, 0.4236, 1.0651]          
+
+'Kersting ex4.3': 
+  type: ug_line_cfg
+  cable: '250,000 AA, CN'
+  phasing: ABCN
+  spacing: '515'
+  Ractual: 
+    - [0.7981, 0.3188, 0.2848]
+    - [0.3188, 0.7980, 0.3188]  
+    - [0.2848, 0.3188, 0.7981]    
+  Xactual: 
+    - [ 0.4467, 0.0334, -0.0138]
+    - [ 0.0334, 0.4048,  0.0334]  
+    - [-0.0138, 0.0334,  0.4467]    
+
+# 'Kersting ex4.4': 
+#   type: ug_line_cfg
+#   cable: '1/0 AA, TS'
+#   neutral: 1/0 7 Strd Cu
+#   phasing: AN
+#   spacing: 'spacing4.4'
+#   Ractual: 
+#     - [0.4576, 0.1560, 0.1535]
+#     - [0.1560, 0.4666, 0.1580]  
+#     - [0.1535, 0.1580, 0.4615]    
+#   Xactual: 
+#     - [1.0780, 0.5017, 0.3849]
+#     - [0.5017, 1.0482, 0.4236]  
+#     - [0.3849, 0.4236, 1.0651]  
+
+# Transformer configs
+XFM-1: 
+  Rpu: 0.011
+  Smax: 500.0
+  Vpri: 4.16
+  Vsec: 0.48
+  Xpu: 0.02
+  conns: ['Yg','Yg']
+  index: 21
+  type: xf_cfg      
+  Ractual: 
+    - [0.3461, 0.0000, 0.0000]
+    - [0.0000, 0.3461, 0.0000]  
+    - [0.0000, 0.0000, 0.3461]    
+  Xactual: 
+    - [0.6922, 0.0000, 0.0000]
+    - [0.0000, 0.6922, 0.0000]  
+    - [0.0000, 0.0000, 0.6922]  

@@ -1,0 +1,8 @@
+*.pyc
+/build/**
+/imp.spec
+nb/.ipynb_checkpoints
+*.swp
+.ipynb_checkpoints
+*.html
+line_impedances.py
